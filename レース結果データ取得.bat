@@ -14,27 +14,17 @@ call .venv\Scripts\activate
 :: pyフォルダに移動
 cd py
 
-:: レース出走データ取得
-python "レースデータ取得_地方競馬.py" "shutuba"
+:: 馬券購入
+python "レースデータ取得_地方競馬.py" "result"
 
 :: 直前のコマンド（python）がエラー(0以外)を返したら終了させる
 if %ERRORLEVEL% neq 0 (
     echo.
-    echo [ERROR] レース出走データ取得に失敗しました
-    pause
-    exit /b %ERRORLEVEL%
-)
-
-:: 予想データ作成
-python "予想データ作成.py"
-
-:: 直前のコマンド（python）がエラー(0以外)を返したら終了させる
-if %ERRORLEVEL% neq 0 (
-    echo.
-    echo [ERROR] 予想データ作成に失敗しました
+    echo [ERROR] 馬券購入に失敗しました
     pause
     exit /b %ERRORLEVEL%
 )
 
 echo.
 echo すべての処理が正常に完了しました
+pause

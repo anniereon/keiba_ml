@@ -1,6 +1,10 @@
 :: batファイルをANSIで保存
 
 @echo off
+set /p ANSWER="このバッチを実行しますか？ (y/n): "
+if /i not "%ANSWER%"=="y" exit
+
+@echo off
 setlocal
 cd /d %~dp0
 
