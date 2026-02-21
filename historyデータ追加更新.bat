@@ -10,13 +10,24 @@ call .venv\Scripts\activate
 :: pyフォルダに移動
 cd py
 
-:: 馬券購入
-python "レースデータ取得_地方競馬.py" "result"
+:: historyデータ追加
+python "historyデータ追加.py"
 
 :: 直前のコマンド（python）がエラー(0以外)を返したら終了させる
 if %ERRORLEVEL% neq 0 (
     echo.
-    echo [ERROR] 馬券購入に失敗しました
+    echo [ERROR] historyデータ追加に失敗しました
+    pause
+    exit /b %ERRORLEVEL%
+)
+
+:: historyデータ更新
+python "historyデータ更新.py"
+
+:: 直前のコマンド（python）がエラー(0以外)を返したら終了させる
+if %ERRORLEVEL% neq 0 (
+    echo.
+    echo [ERROR] historyデータ更新に失敗しました
     pause
     exit /b %ERRORLEVEL%
 )
